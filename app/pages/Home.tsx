@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
-import { FloatingNavDemo } from './Navbar';
-import { HeroHighlightDemo } from './HeroHighlight';
+import { FloatingNavDemo } from '../components/Navbar';
+import { HeroHighlightDemo } from '../components/HeroHighlight';
 
 const HomePage = () => {
 return (

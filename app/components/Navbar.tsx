@@ -1,7 +1,15 @@
 
 import { FloatingNav } from "./ui/FloatingNavbar";
-import { IconHome, IconMessage, IconUser, IconTools, IconUserCircle, IconPhone} from "@tabler/icons-react";
+import { IconHome, IconTools, IconUserCircle, IconPhone} from "@tabler/icons-react";
 export function FloatingNavDemo() {
+
+  return (
+    <div className="relative  w-full">
+      <FloatingNav navItems={navItems} />
+    </div>
+  );
+}
+
   const navItems = [
     {
       name: "Home",
@@ -35,9 +43,3 @@ export function FloatingNavDemo() {
       ),
     },
   ];
-  return (
-    <div className="relative  w-full">
-      <FloatingNav navItems={navItems} />
-    </div>
-  );
-}
