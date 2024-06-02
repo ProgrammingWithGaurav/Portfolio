@@ -5,64 +5,84 @@ import {
     GlowingStarsDescription,
     GlowingStarsTitle,
 } from "./ui/GlowingStars";
-import { IconClock, IconGitFork, IconStar } from "@tabler/icons-react";
+import { IconArrowAutofitContent, IconBrandGit, IconClock, IconGitFork, IconLink, IconStar } from "@tabler/icons-react";
+import { AnimatedTooltip } from "./ui/Tooltip";
 
-// Remove the duplicate declaration of 'Icon' component
-const Icon: React.FC = () => {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="h-4 w-4 text-white stroke-2"
-        >
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-            />
-        </svg>
-    );
-};
+export function Project({
+    repo,
+}: {
+    repo: {
+        id: number;
+        name: string;
+        html_url: string;
+        homepage: string;
+        topics: string[];
+        description: string;
+        watchers: number;
+        forks: number;
+        stargazers_count: number;
+        created_at: string;
+    };
 
-interface Repo {
-        id: number,
-        name: string,
-        homepage: string,
-        url: string,
-        topics: string[],
-        description: string,
-        watchers: number,
-        forks: number,
-        stargazers_count: number,   
-        created_at: string,
-}
+}) {
+       // Convert the created_at string to a Date object
+    const createdAt = new Date(repo.created_at);
 
-export function Project(repo: Repo) {
+    // Format the date
+    const formattedDate = `${createdAt.getDate()}-${createdAt.getMonth() + 1}-${createdAt.getFullYear()}`;
+
+    // Capitalize the name
+    const capitalizedTitle = repo.name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+    const icons = [
+    {
+        id: 1,
+        name: "Stars",
+        count: repo.stargazers_count.toString(), // Convert to string
+        icon:
+        <IconStar className="object-cover m-2 !p-0 object-top rounded-full cursor-pointer text-gray-200 hover:text-gray-100  group-hover:scale-105 group-hover:z-30  relative transition duration-500"/>
+    },
+    {
+        id: 2,
+        name: "Forks",
+        count: repo.forks.toString(), // Convert to string
+        icon:
+        <IconGitFork className="object-cover m-2 !p-0 object-top rounded-full cursor-pointer text-gray-200 hover:text-gray-100  group-hover:scale-105 group-hover:z-30  relative transition duration-500"/>
+    },
+    {
+        id: 3,
+        name: "Created At",
+        count: formattedDate,
+        icon:
+        <IconClock className="object-cover m-2 !p-0 object-top rounded-full cursor-pointer text-gray-200 hover:text-gray-100  group-hover:scale-105 group-hover:z-30  relative transition duration-500"/>
+        },
+    
+    {
+        id:4,
+        name: "Github Link",
+        count: "Visit the Repo",
+        icon:
+            <a href={repo.html_url} target="_blank" rel="noreferrer">
+        <IconBrandGit className="object-cover m-2 !p-0 object-top rounded-full cursor-pointer text-gray-200 hover:text-gray-100  group-hover:scale-105 group-hover:z-30  relative transition duration-500"/>
+        </a>},
+    {
+        id:5,
+        name: "Site Link",
+        count: "Visit the Site",
+        icon:
+            <a href={repo.homepage} target="_blank" rel="noreferrer">
+        <IconLink className="object-cover m-2 !p-0 object-top rounded-full cursor-pointer text-gray-200 hover:text-gray-100  group-hover:scale-105 group-hover:z-30  relative transition duration-500"/>
+        </a>},
+    ];
     return (
         <div className="flex py-20 items-center justify-center antialiased">
             <GlowingStarsBackgroundCard>
                 <GlowingStarsTitle>
-                    {repo.name}
-                </GlowingStarsTitle>
-                <div className="flex justify-between items-end">
-                    <GlowingStarsDescription>
-                        {repo.description}
-                    </GlowingStarsDescription>
-                 <div className="flex rounded-lg space-x-1 bg-[hsla(0,0%,100%,.1)] p-4 items-center justify-center">
-                    <button className="cursor-pointer hover:bg-gray-500 rounded-full p-2" onClick={() => { /* handle click for IconStar */ }}>
-                        <IconStar />
-                    </button>
-                    <button className="cursor-pointer hover:bg-gray-500 rounded-full p-2" onClick={() => { /* handle click for IconGitFork */ }}>
-                        <IconGitFork />
-                    </button>
-                    <button className="cursor-pointer hover:bg-gray-500 rounded-full p-2" onClick={() => { /* handle click for IconClock */ }}>
-                        <IconClock />
-                    </button>
-                </div>
-                </div>
+                    {capitalizedTitle}
+                </GlowingStarsTitle>                                                    
+                
+                
+                <AnimatedTooltip items={icons} />
             </GlowingStarsBackgroundCard>
         </div>
     );

@@ -7,7 +7,7 @@ interface Repo {
         id: number,
         name: string,
         homepage: string,
-        url: string,
+        html_url: string,
         topics: string[],
         description: string,
         watchers: number,
@@ -34,9 +34,12 @@ const ProjectsPage = () => {
       <FloatingNavDemo />
       <div className='flex flex-col my-10 h-[100px]'>
         <h1 className='text-6xl font-bold text-center'>Projects</h1>
-        <div className='grid grid-cols-3 gap-4 p-4'>
-          {repos.map((repo: Repo) => (
-            <Project repo={repo} key={repo.id} />
+     <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4'>
+       {repos.map((repo: Repo) => (
+            <Project
+              repo={repo}
+              key={repo.id}
+            />
           ))}
         </div>
       </div>
