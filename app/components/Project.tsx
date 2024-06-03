@@ -80,9 +80,16 @@ export function Project({
                 <GlowingStarsTitle>
                     {capitalizedTitle}
                 </GlowingStarsTitle>                                                    
-                
-                
                 <AnimatedTooltip items={icons} />
+                <div className="flex flex-wrap justify-center my-2  space-x-2">
+                    {repo.topics.slice(0, 3).map(topic => (
+                        <GlowingStarsDescription key={topic}>
+                            <span className='bg-blue-500 hover:bg-blue-600 transition-all duration-500 cursor-pointer px-4 py-2 rounded-full'>
+                                {topic}
+                                </span>
+                        </GlowingStarsDescription>
+                    ))}
+                    </div>
             </GlowingStarsBackgroundCard>
         </div>
     );
