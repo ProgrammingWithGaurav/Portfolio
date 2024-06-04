@@ -10,6 +10,7 @@ interface Profile {
     bio: string;
     followers: number;
     following: number;
+    html_url: string;
 }
 const AboutPage = () => {
     const [profile, setProfile] = useState<Profile | null>(null);
@@ -31,7 +32,7 @@ const AboutPage = () => {
         <div className='flex flex-col items-center justify-center h-[1000px]'>
             <FloatingNavDemo />
             {profile && (
-                <ProfileCard followers={profile.followers} username={profile.name} bio={profile.bio} profileImage={profile.avatar_url} following={profile.following}  />
+                <ProfileCard html_url={profile.html_url} followers={profile.followers} username={profile.name} bio={profile.bio} profileImage={profile.avatar_url} following={profile.following}  />
             )}
         </div>
     );

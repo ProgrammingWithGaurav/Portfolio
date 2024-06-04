@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { HeroHighlight, Highlight } from "./ui/HeroHighlight";
 
 export function HeroHighlightDemo() {
@@ -20,9 +21,11 @@ export function HeroHighlightDemo() {
         }}
         className="text-2xl flex flex-col justify-center items-center  px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
       >
-  <img 
+  <Image
   src="https://avatars.githubusercontent.com/u/88154142?v=4" 
-  className="w-40 h-40 rounded-full mx-auto transform transition duration-500 hover:scale-110 animate-pulse shadow-md shadow-gray-700" 
+          className="w-40 h-40 rounded-full mx-auto transform transition duration-500 hover:scale-110 animate-pulse shadow-md shadow-gray-700" 
+          width={150}
+          height={150}
   alt="profile" 
 />
         Hey I am a {" "}
