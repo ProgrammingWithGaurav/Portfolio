@@ -6,7 +6,7 @@ import { ProfileCard } from '@/components/ProfileCard';
 
 interface Profile {
     avatar_url: string;
-    name: string;
+    login: string;
     bio: string;
     followers: number;
     following: number;
@@ -32,7 +32,7 @@ const AboutPage = () => {
         <div className='flex flex-col items-center justify-center h-[1000px]'>
             <FloatingNavDemo />
             {profile && (
-                <ProfileCard html_url={profile.html_url} followers={profile.followers} username={profile.name} bio={profile.bio} profileImage={profile.avatar_url} following={profile.following}  />
+                <ProfileCard html_url={profile.html_url} followers={profile.followers} login={profile.login} bio={profile.bio} profileImage={profile.avatar_url} following={profile.following}  />
             )}
         </div>
     );
